@@ -35,7 +35,7 @@ app.get('/about', [c_b_1, c_b_2], (req, res) => {
 })
 
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/index.html')
+    res.sendFile(__dirname + '/public/index.html')
 })
 
 app.get('/ids/:id', (req, res) => {
