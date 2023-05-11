@@ -1,8 +1,10 @@
-const express = require('express')
+import express from 'express'
+import path from 'path'
+
 const app = express()
 
-const cats = require('./public/cats/router')
-const fishes = require('./public/fishes/fishes_router')
+import cats from './public/cats/router.js'
+import fishes from './public/fishes/fishes_router.js'
 
 const c_b_1 = (req, res, next) => {
     console.log('First action')
@@ -22,7 +24,7 @@ const middleware_function_2 = (req, res, next) => {
     next()
 }
 
-app.use(express.static(__dirname + '/public'))
+app.use(express.static(path.resolve('./public')))
 
 app.use(middleware_function_1)
 app.use('/secret', middleware_function_2)
@@ -35,11 +37,11 @@ app.get('/about', [c_b_1, c_b_2], (req, res) => {
 })
 
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/index.html')
+    res.sendFile(path.resolve('./index.html'))
 })
 
 app.get('/ids/:id', (req, res) => {
-    res.sendFile(__dirname + `/public/ids/${req.params.id}.html`)
+    res.sendFile(path.resolve(`./public/ids/${req.params.id}.html`))
 })
 
 app.all('/secret', (req, res) => {
@@ -47,9 +49,9 @@ app.all('/secret', (req, res) => {
     let x2 = Math.random()
     if(x1 >= x2) {
         console.log(req.myMessage)
-        res.sendFile(__dirname + '/public/secret.html')
+        res.sendFile(path.resolve('./public/secret.html'))
     } else {
-        res.sendFile(__dirname + '/public/404.html')
+        res.sendFile(path.resolve('./public/404.html'))
     }
 })
 

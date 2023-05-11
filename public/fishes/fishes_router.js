@@ -1,9 +1,9 @@
-const express = require('express')
+import express from 'express'
+import {home, about} from './fishes_controller.js'
+
 const router = express.Router()
 
-const fishes_controller = require('./fishes_controller.js')
+router.get('/', home)
+router.get('/about', about)
 
-router.get('/', fishes_controller.home)
-router.get('/about', fishes_controller.about)
-
-module.exports = router
+export default router
