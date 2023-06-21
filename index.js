@@ -1,5 +1,6 @@
 import express from 'express'
 import path from 'path'
+import bodyParser from 'body-parser'
 
 const app = express()
 
@@ -23,6 +24,8 @@ const middleware_function_2 = (req, res, next) => {
     req.myMessage = 111
     next()
 }
+
+app.use(bodyParser.urlencoded({extended: false}))
 
 app.use(express.static(path.resolve('./public')))
 
@@ -54,8 +57,13 @@ app.all('/secret', (req, res) => {
         res.sendFile(path.resolve('./public/404.html'))
     }
 })
-
-
+app.post('/task', (req, res) => {
+    if(req.body.answer == 15) {
+        res.send(`Hi, ${req.body.username}! Your answer is correct`)
+    } else {
+        res.send(`Hi, ${req.body.username}! Your answer is incorrect`)
+    }
+})
 
 app.listen(3000, () => {
     console.log('Server started: http://localhost:3000')

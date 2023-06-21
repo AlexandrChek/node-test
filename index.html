@@ -16,7 +16,7 @@
     <a href="/about">About</a>
     <a href="/secret">Secret</a>
     <br/>
-    <img src="/space.jpg" alt="Spase">
+    <img src="/space.jpg" alt="Space">
     <br/>
     <a href="/cats">Cats home page</a>|
     <a href="/cats/about">Cats about page</a>
@@ -24,10 +24,17 @@
     <a href="/fishes">Fishes home page</a>|
     <a href="/fishes/about">Fishes about page</a>
     <br/>
-    <form method="post" action="/check-user">
+    <div>Enter your name and solve the task</div>
+    <form method="post" action="/task">
         <input type="text" name="username" placeholder="Name">
-        <button type="submit">Search</button>
+        <div>Task: 10 + 5 =</div>
+        <input type="number" name="answer" placeholder="Answer">
+        <button>Submit</button>
     </form>
-    
+    <div>Solve the difficult task: 12 + 13 =</div>
+    <form method="post" action="/difficult_task">
+        <input type="number" name="answer_2">
+        <button>Submit</button>
+    </form>
 </body>
 </html>
